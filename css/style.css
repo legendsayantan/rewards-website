@@ -1,0 +1,77 @@
+.topHeader{
+    background-color: #2F00FF;
+    height: 50px;
+    z-index: 999;
+    transform-origin: 90% 190%;
+    animation: slideDown 1.2s forwards;
+}
+.bottomHeader{
+    background-color: #7F00FF;
+    height: 35px;
+    z-index: 998;
+    opacity: 0.7;
+    transform-origin: 90% 170%;
+    animation: slideDown2 1s forwards;
+}
+.topFooter{
+    background-color: #7F00FF;
+    height: 35px;
+    z-index: 998;
+    opacity: 0.7;
+    transform-origin: 10% -70%;
+    animation: slideUp2 1s forwards;
+}
+.bottomFooter{
+    background-color: #2F00FF;
+    height: 50px;
+    z-index: 999;
+    transform-origin: 10% -70%;
+    animation: slideUp 1.2s forwards;
+}
+body{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+@keyframes slideDown {
+    0% {
+        transform: translateY(-200%) rotate(0deg) scale(100%);
+    }
+    100% {
+        transform: translateY(-50%) rotate(-3deg) scale(180%);
+    }
+}
+@keyframes slideUp {
+    0% {
+        transform: translateY(200%) rotate(0deg) scale(100%);
+    }
+    100% {
+        transform: translateY(-50%) rotate(-3deg) scale(180%);
+    }
+}
+@keyframes slideDown2 {
+    0% {
+        transform: translateY(-200%) rotate(0deg) scale(100%);
+    }
+    100% {
+        transform: translateY(35%) rotate(-4deg) scale(180%);
+    }
+}
+@keyframes slideUp2 {
+    0% {
+        transform: translateY(200%) rotate(0deg) scale(100%);
+    }
+    100% {
+        transform: translateY(35%) rotate(-4deg) scale(180%);
+    }
+}
+#page{
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(from 45deg at 100% 0%, #001BFF 0%, #007BFF 50%, #7F00FF 100%);    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}

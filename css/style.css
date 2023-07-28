@@ -53,10 +53,13 @@ body{
     top: 0;
     left: 0;
     z-index: 0;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 .pageText{
-    animation: fadeIn 1s forwards;
+    color: aquamarine;
+    animation: fadeIn 3s forwards;
 }
 @keyframes slideDown {
     0% {

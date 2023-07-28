@@ -35,7 +35,7 @@
     background-color: #007BFF;
 }
 .button:hover{
-    background-color: #003cff;
+    background: linear-gradient(0deg, rgba(0,123,255,1) 0%, rgba(0,212,255,1) 100%);;
     cursor: pointer;
 }
 body{

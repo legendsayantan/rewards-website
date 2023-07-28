@@ -28,6 +28,16 @@
     transform-origin: 10% -70%;
     animation: slideUp 1.2s forwards;
 }
+.button{
+    padding: 0px 10px;
+    border-radius: 25px;
+    border-color: #007BFF;
+    background-color: #007BFF;
+}
+.button:hover{
+    background-color: #0084ff;
+    cursor: pointer;
+}
 body{
     padding: 0;
     margin: 0;

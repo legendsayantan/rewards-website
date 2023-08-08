@@ -45,10 +45,10 @@
     border: 1px solid #007BFF;
     background-color: #007BFF;
     color: #fff;
-    font-size: 24px;
+    font-size: xx-large;
     transition: border-color 0.3s ease-in-out;
     cursor: pointer;
-    height: 15px;
+    height: 30px;
     width: 50px;
 }
 

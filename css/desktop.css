@@ -27,6 +27,7 @@
     z-index: 999;
     transform-origin: 10% -70%;
     animation: slideUp 1.2s forwards;
+    user-select: none;
 }
 .button{
     padding: 0px 10px;

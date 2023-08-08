@@ -3,14 +3,22 @@ load(window.location.pathname)
 var homeButton = document.getElementById("home")
 var onlineButton = document.getElementById("online")
 var downloadButton = document.getElementById("download")
+var mobileOnlineButton= document.getElementById("mobile-online")
+var mobileDownloadButton = document.getElementById("mobile-download")
 homeButton.addEventListener("click", function () {
     load("/index.html")
 })
 onlineButton.addEventListener("click", function () {
     load("/online.html")
 })
+mobileOnlineButton.addEventListener("click", function () {
+    load("/online.html")
+})
 downloadButton.addEventListener("click", function () {
   window.open("https://github.com/legendsayantan/msrewards/releases/latest")
+})
+mobileDownloadButton.addEventListener("click", function () {
+    window.open("https://github.com/legendsayantan/msrewards/releases/latest")
 })
 
 function load(path) {

@@ -79,7 +79,7 @@ function searchOn(iframe,count,delay,callback){
         if(runCount>0){
             setTimeout(function (){
                 iframe.src = "https://www.bing.com/search?q="+generateRandomString(Math.random()*9+1)
-            },delay)
+            },delay*1000)
         }
         callback(runCount)
     })

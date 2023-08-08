@@ -1,32 +1,35 @@
-var mainpage = window.document.getElementsByClassName("page")[0]
-load(window.location.pathname)
-var homeButton = document.getElementById("home")
-var onlineButton = document.getElementById("online")
-var downloadButton = document.getElementById("download")
-var mobileOnlineButton= document.getElementById("mobile-online")
-var mobileDownloadButton = document.getElementById("mobile-download")
-homeButton.addEventListener("click", function () {
-    load("/index.html")
-})
-onlineButton.addEventListener("click", function () {
-    load("/online.html")
-})
-mobileOnlineButton.addEventListener("click", function () {
-    load("/online.html")
-})
-downloadButton.addEventListener("click", function () {
-  window.open("https://github.com/legendsayantan/msrewards/releases/latest")
-})
-mobileDownloadButton.addEventListener("click", function () {
-    window.open("https://github.com/legendsayantan/msrewards/releases/latest")
-})
 
-function load(path) {
+var mainpage = window.document.getElementsByClassName("page")[0]
+load(window.location.pathname,function () {
+    var homeButton = document.getElementById("home")
+    var onlineButton = document.getElementById("online")
+    var downloadButton = document.getElementById("download")
+    var mobileOnlineButton= document.getElementById("mobile-online")
+    var mobileDownloadButton = document.getElementById("mobile-download")
+    homeButton.addEventListener("click", function () {
+        load("/index.html")
+    })
+    onlineButton.addEventListener("click", function () {
+        load("/online.html")
+    })
+
+    downloadButton.addEventListener("click", function () {
+        window.open("https://github.com/legendsayantan/msrewards/releases/latest")
+    })
+    mobileOnlineButton.addEventListener("click", function () {
+        load("/online.html")
+    })
+    mobileDownloadButton.addEventListener("click", function () {
+        window.open("https://github.com/legendsayantan/msrewards/releases/latest")
+    })
+})
+function load(path,callback = function () {}) {
     var htmlFile = (path.includes('/index.html')||path==='/') ? '/home.html' : path
     fetch(htmlFile).then(function (response) {
         return response.text();
     }).then(function (html) {
         mainpage.innerHTML = html;
+        callback()
     }).catch(function (err) {
         console.warn('Something went wrong.', err);
     });

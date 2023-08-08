@@ -1,28 +1,29 @@
 
 var mainpage = window.document.getElementsByClassName("page")[0]
-load(window.location.pathname,function () {
+const onloadCallback = function () {
     var homeButton = document.getElementById("home")
     var onlineButton = document.getElementById("online")
     var downloadButton = document.getElementById("download")
     var mobileOnlineButton= document.getElementById("mobile-online")
     var mobileDownloadButton = document.getElementById("mobile-download")
     homeButton.addEventListener("click", function () {
-        load("/index.html")
+        load("/index.html",onloadCallback)
     })
     onlineButton.addEventListener("click", function () {
-        load("/online.html")
+        load("/online.html",initialiseOnline)
     })
 
     downloadButton.addEventListener("click", function () {
         window.open("https://github.com/legendsayantan/msrewards/releases/latest")
     })
     mobileOnlineButton.addEventListener("click", function () {
-        load("/online.html")
+        load("/online.html",initialiseOnline)
     })
     mobileDownloadButton.addEventListener("click", function () {
         window.open("https://github.com/legendsayantan/msrewards/releases/latest")
     })
-})
+}
+load(window.location.pathname,onloadCallback)
 function load(path,callback = function () {}) {
     var htmlFile = (path.includes('/index.html')||path==='/') ? '/home.html' : path
     fetch(htmlFile).then(function (response) {

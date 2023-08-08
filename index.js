@@ -14,7 +14,7 @@ downloadButton.addEventListener("click", function () {
 })
 
 function load(path) {
-    var htmlFile = path.includes("/index.html") ? "/home.html" : path
+    var htmlFile = path.includes('/index.html') ? '/home.html' : (path==='/'?'/home.html':path)
     fetch(htmlFile).then(function (response) {
         return response.text();
     }).then(function (html) {

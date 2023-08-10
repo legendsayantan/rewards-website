@@ -80,22 +80,37 @@ function initialiseOnline() {
     dashboard.addEventListener('click',function () {
         window.open("https://rewards.bing.com/?signIn=1")
     })
+    if(window.location.hostname==='localhost') {
+        iframe.style.setProperty("width", "300px")
+        iframe.style.setProperty("height", "300px")
+        iframe.style.setProperty("opacity", "1")
+    }
 }
 
 function searchOn(iframe,count,delay,callback){
-    var runCount = count;
+    var needToInitiate = count;
+    var needToLoad = count;
     window.localStorage.setItem('online-count',count)
     window.localStorage.setItem('online-delay',delay)
     iframe.addEventListener('load', function () {
-        runCount--;
-        if(runCount>0){
-            setTimeout(function (){
-                iframe.src = "https://www.bing.com/search?q="+generateRandomString(Math.random()*9+1)
-            },delay*1000)
+        if(needToInitiate<needToLoad) {
+            needToLoad--;
+            console.log("remaining loads "+needToLoad)
+            if(needToLoad>0){
+                setTimeout(function (){
+                    iframe.src = "https://www.bing.com/search?q="+generateRandomString(Math.random()*9+1)
+                    needToInitiate--;
+                    console.log("remaining initiations "+needToInitiate)
+                },delay*1000)
+            }else{
+                console.log(count+" "+needToLoad+" "+needToInitiate)
+            }
+            callback(needToLoad)
         }
-        callback(runCount)
     })
     iframe.src = "https://www.bing.com/search?q="+generateRandomString(Math.random()*9+1)
+    needToInitiate--
+    console.log("remaining initiations "+needToInitiate)
 }
 function generateRandomString(length){
     var result = '';

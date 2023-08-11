@@ -24,9 +24,11 @@ const onloadCallback = function () {
     mobileDownloadButton.addEventListener("click", function () {
         window.open("https://github.com/legendsayantan/msrewards/releases/latest")
     })
+}
+load((params.action==null)?window.location.pathname:params.action, (params.action==null)?onloadCallback:loadOthers)
+function loadOthers() {
     initialiseOnline()
 }
-load((params.action==null)?window.location.pathname:params.action, onloadCallback)
 function load(path, callback = function () {
 }) {
     var htmlFile = (path.includes('/index.html') || path === '/') ? '/home.html' : path

@@ -1,9 +1,9 @@
 [{
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target" : { "namespace": "android_app", "package_name": "com.legendsayantan.urlintent",
-    "sha256_cert_fingerprints": ["F4:62:7F:02:08:98:50:69:93:56:8A:AC:8A:BA:AA:5C:70:7D:38:42:D7:73:16:38:E1:CC:AD:53:6F:89:EA:7C"] }
+    "sha256_cert_fingerprints": ["AE:9A:08:29:25:E1:96:F9:3F:F0:44:1B:85:94:0A:8B:E2:5F:46:1B:9E:CD:26:29:17:BB:49:25:25:B3:1B:2F","F4:62:7F:02:08:98:50:69:93:56:8A:AC:8A:BA:AA:5C:70:7D:38:42:D7:73:16:38:E1:CC:AD:53:6F:89:EA:7C"] }
 },{
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target" : { "namespace": "android_app", "package_name": "com.legendsayantan.msrewards",
-    "sha256_cert_fingerprints": ["F4:62:7F:02:08:98:50:69:93:56:8A:AC:8A:BA:AA:5C:70:7D:38:42:D7:73:16:38:E1:CC:AD:53:6F:89:EA:7C"] }
+    "sha256_cert_fingerprints": ["AE:9A:08:29:25:E1:96:F9:3F:F0:44:1B:85:94:0A:8B:E2:5F:46:1B:9E:CD:26:29:17:BB:49:25:25:B3:1B:2F","F4:62:7F:02:08:98:50:69:93:56:8A:AC:8A:BA:AA:5C:70:7D:38:42:D7:73:16:38:E1:CC:AD:53:6F:89:EA:7C"] }
 }]

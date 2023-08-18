@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.legendsayantan.urlintent",
+    "sha256_cert_fingerprints": ["F4:62:7F:02:08:98:50:69:93:56:8A:AC:8A:BA:AA:5C:70:7D:38:42:D7:73:16:38:E1:CC:AD:53:6F:89:EA:7C"] }
+},{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.legendsayantan.msrewards",
+    "sha256_cert_fingerprints": ["F4:62:7F:02:08:98:50:69:93:56:8A:AC:8A:BA:AA:5C:70:7D:38:42:D7:73:16:38:E1:CC:AD:53:6F:89:EA:7C"] }
+}]

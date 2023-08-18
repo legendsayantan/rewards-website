@@ -1,47 +1,47 @@
 const params = getURLParameters();
-var mainpage = window.document.getElementsByClassName("page")[0]
+const mainpage = window.document.getElementsByClassName("page")[0];
 const onloadCallback = function () {
-    var homeButton = document.getElementById("home")
-    var onlineButton = document.getElementById("online")
-    var downloadButton = document.getElementById("download")
-    var mobileOnlineButton = document.getElementById("mobile-online")
-    var mobileDownloadButton = document.getElementById("mobile-download")
+    const homeButton = document.getElementById("home");
+    const onlineButton = document.getElementById("online");
+    const downloadButton = document.getElementById("download");
+    const mobileOnlineButton = document.getElementById("mobile-online");
+    const mobileDownloadButton = document.getElementById("mobile-download");
     homeButton.addEventListener("click", function () {
-        load("/index.html", onloadCallback)
+        loadPageContent("/index.html")
     })
     onlineButton.addEventListener("click", function () {
-        load("/online.html", initialiseOnline)
+        loadPageContent("/online.html")
         updateURLParameter('action', 'online')
     })
-
     downloadButton.addEventListener("click", function () {
         window.open("https://github.com/legendsayantan/msrewards/releases/latest")
     })
     mobileOnlineButton.addEventListener("click", function () {
-        load("/online.html", initialiseOnline)
+        loadPageContent("/online.html")
         updateURLParameter('action', 'online')
     })
     mobileDownloadButton.addEventListener("click", function () {
         window.open("https://github.com/legendsayantan/msrewards/releases/latest")
     })
 }
-load((params.action==null)?window.location.pathname:params.action, (params.action==null)?onloadCallback:loadOthers)
-function loadOthers() {
-    initialiseOnline()
-}
-function load(path, callback = function () {
-}) {
-    var htmlFile = (path.includes('/index.html') || path === '/') ? '/home.html' : path
-    if(!htmlFile.includes('.html'))htmlFile+='.html'
+loadPageContent((params.action == null) ? window.location.pathname : params.action)
+
+function loadPageContent(path) {
+    let htmlFile = (path.includes('/index.html') || path === '/') ? '/home.html' : path;
+    if (!htmlFile.includes('.html')) htmlFile += '.html'
+    console.log("loading "+htmlFile)
     fetch(htmlFile).then(function (response) {
         return response.text();
     }).then(function (html) {
         mainpage.innerHTML = html;
-        callback()
+        if(htmlFile.includes("online")) initialiseOnline()
+        else if (htmlFile.includes("redeem")) initialiseRedeem()
+        onloadCallback()
     }).catch(function (err) {
         console.warn('Something went wrong.', err);
     });
 }
+
 function initialiseOnline() {
     const onlineCount = window.localStorage.getItem('online-count')
     const onlineDelay = window.localStorage.getItem('online-delay')
@@ -53,7 +53,7 @@ function initialiseOnline() {
         || navigator.userAgent.match(/BlackBerry/i)
         || navigator.userAgent.match(/Windows Phone/i));
     const edgeBrowser = navigator.userAgent.match(/edg/i) != null;
-    const htmlData = "You are using <b>" + (edgeBrowser ? "Edge " : "Non-Edge browser ") + "</b>on <b/>" + (desktopBrowser ? "Desktop" : "Mobile") + '</b>.';
+    const htmlData = "You are using <b>" + (edgeBrowser ? "Edge" : "Non-Edge browser") + "</b> on <b/>" + (desktopBrowser ? "Desktop" : "Mobile") + '</b>.';
     const infoText = document.getElementById('browserinfo');
     infoText.innerHTML = htmlData
     const mobilesearch = document.getElementById("mobilesearch")
@@ -93,12 +93,25 @@ function initialiseOnline() {
     }
 }
 
+function initialiseRedeem() {
+    console.log("initialising redeem")
+    const redeemCode = document.getElementById("redeem-code");
+    redeemCode.innerText = params.code
+    redeemCode.addEventListener('click', function () {
+        navigator.clipboard.writeText(params.code).then(() => document.getElementById("redeem-copy-state").innerText = "Copied!")
+    })
+    if(params.amount!=null){
+        const redeemAmount = document.getElementById("redeem-amount");
+        redeemAmount.innerText = "You can collect "+params.amount+" credits from this code."
+    }
+}
+
 function searchOn(iframe, count, delay, callback) {
-    var needToInitiate = count;
-    var needToLoad = count;
+    let needToInitiate = count;
+    let needToLoad = count;
     window.localStorage.setItem('online-count', count)
     window.localStorage.setItem('online-delay', delay)
-    iframe.addEventListener('load', function () {
+    iframe.addEventListener('loadPageContent', function () {
         if (needToInitiate < needToLoad) {
             needToLoad--;
             console.log("remaining loads " + needToLoad)
@@ -120,10 +133,10 @@ function searchOn(iframe, count, delay, callback) {
 }
 
 function generateRandomString(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
@@ -132,9 +145,12 @@ function generateRandomString(length) {
 function getURLParameters() {
     const searchParams = new URLSearchParams(window.location.search);
     const params = {};
-    for (let [key, value] of searchParams.entries()) {params[key] = value;}
+    for (let [key, value] of searchParams.entries()) {
+        params[key] = value;
+    }
     return params;
 }
+
 function updateURLParameter(parameterName, newValue) {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set(parameterName, newValue);

@@ -111,7 +111,7 @@ function searchOn(iframe, count, delay, callback) {
     let needToLoad = count;
     window.localStorage.setItem('online-count', count)
     window.localStorage.setItem('online-delay', delay)
-    iframe.addEventListener('loadPageContent', function () {
+    iframe.addEventListener('load', function () {
         if (needToInitiate < needToLoad) {
             needToLoad--;
             console.log("remaining loads " + needToLoad)

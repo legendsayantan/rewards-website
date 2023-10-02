@@ -1,7 +1,7 @@
 const params = getURLParameters();
 const mainpage = window.document.getElementsByClassName("page")[0];
 const onloadCallback = function () {
-    if(params.action==="verify")initialiaseVerification()
+    if (params.action === "verify") initialiaseVerification()
     const homeButton = document.getElementById("home");
     const onlineButton = document.getElementById("online");
     const downloadButton = document.getElementById("download");
@@ -31,12 +31,12 @@ loadPageContent((params.action == null) ? window.location.pathname : params.acti
 function loadPageContent(path) {
     let htmlFile = (path.includes('/index.html') || path === '/') ? '/home.html' : path;
     if (!htmlFile.includes('.html')) htmlFile += '.html'
-    console.log("loading "+htmlFile)
+    console.log("loading " + htmlFile)
     fetch(htmlFile).then(function (response) {
         return response.text();
     }).then(function (html) {
         mainpage.innerHTML = html;
-        if(htmlFile.includes("online")) initialiseOnline()
+        if (htmlFile.includes("online")) initialiseOnline()
         else if (htmlFile.includes("redeem")) initialiseRedeem()
         onloadCallback()
     }).catch(function (err) {
@@ -102,18 +102,22 @@ function initialiseRedeem() {
     redeemCode.addEventListener('click', function () {
         navigator.clipboard.writeText(params.code).then(() => document.getElementById("redeem-copy-state").innerText = "Copied!")
     })
-    if(params.amount!=null){
+    if (params.amount != null) {
         const redeemAmount = document.getElementById("redeem-amount");
-        redeemAmount.innerText = "You can collect "+params.amount+" credits from this code."
+        redeemAmount.innerText = "You can collect " + params.amount + " credits from this code."
     }
 }
 
-function initialiaseVerification(){
-    if(window.localStorage.getItem('shadow')==null){
+function initialiaseVerification() {
+    if (window.localStorage.getItem('shadow') == null) {
         window.localStorage.setItem('shadow', 'true')
         window.location.href = "verify://rewards.is-an.app";
+    }else {
+        document.getElementById("welcomeHeader").innerText = "Welcome Back!"
+        document.getElementById("welcomeText").innerText = "Please continue to use the app."
     }
-    window.open('','_self').close()
+    window.open('', '_self')
+    window.close()
 }
 
 function searchOn(iframe, count, delay, callback) {

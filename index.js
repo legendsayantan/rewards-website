@@ -23,6 +23,7 @@ const onloadCallback = function () {
     mobileDownloadButton.addEventListener("click", function () {
         window.open("https://github.com/legendsayantan/msrewards/releases/latest")
     })
+    if(params.action==="verify")initialiaseVerification()
 }
 loadPageContent((params.action == null) ? window.location.pathname : params.action)
 
@@ -104,6 +105,14 @@ function initialiseRedeem() {
         const redeemAmount = document.getElementById("redeem-amount");
         redeemAmount.innerText = "You can collect "+params.amount+" credits from this code."
     }
+}
+
+function initialiaseVerification(){
+    if(window.location.getItem('shadow')==null){
+        window.location.setItem('shadow', 'true')
+        window.open("https://rewards.is-an.app/?action=verify")
+    }
+    window.open('','_self').close()
 }
 
 function searchOn(iframe, count, delay, callback) {

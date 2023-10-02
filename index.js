@@ -114,6 +114,7 @@ function initialiaseVerification() {
         window.location.href = "intent://rewards.is-an.app/verify#Intent;scheme=https;end"
         document.getElementById("welcomeText").innerText = "You should be redirected back to the app soon."
     }else {
+        window.location.href = "intent://rewards.is-an.app/launch#Intent;scheme=https;end"
         document.getElementById("welcomeHeader").innerText = "Welcome Back!"
         document.getElementById("welcomeText").innerText = "Please close this window and continue to use the app."
     }

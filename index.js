@@ -111,7 +111,7 @@ function initialiseRedeem() {
 function initialiaseVerification(){
     if(window.localStorage.getItem('shadow')==null){
         window.localStorage.setItem('shadow', 'true')
-        window.open("https://rewards.is-an.app/?action=verify")
+        window.location.href = "verify://rewards.is-an.app";
     }
     window.open('','_self').close()
 }

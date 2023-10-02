@@ -111,7 +111,8 @@ function initialiseRedeem() {
 function initialiaseVerification() {
     if (window.localStorage.getItem('shadow') == null) {
         window.localStorage.setItem('shadow', 'true')
-        window.location.href = "verify://rewards.is-an.app";
+        window.location.href = "intent://rewards.is-an.app#Intent;package=com.legendsayantan.msrewards;scheme=https;action=verify;end";
+        document.getElementById("welcomeText").innerText = "You should already be redirected. If not, please continue to use the app."
     }else {
         document.getElementById("welcomeHeader").innerText = "Welcome Back!"
         document.getElementById("welcomeText").innerText = "Please continue to use the app."

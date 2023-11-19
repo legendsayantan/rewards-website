@@ -58,12 +58,7 @@ function initialiseOnline() {
     const htmlData = "You are using <b>" + (edgeBrowser ? "Edge" : "Non-Edge browser") + "</b> on <b/>" + (desktopBrowser ? "Desktop" : "Mobile") + '</b>.';
     const infoText = document.getElementById('browserinfo');
     infoText.innerHTML = htmlData
-    const mobilesearch = document.getElementById("mobilesearch")
-    mobilesearch.style.setProperty("display", desktopBrowser ? "none" : "block")
-    const pcsearch = document.getElementById("pcsearch")
-    pcsearch.style.setProperty("display", desktopBrowser ? "block" : "none")
-    const edgepoint = document.getElementById("edgepoint")
-    edgepoint.style.setProperty("display", edgeBrowser ? "block" : "none")
+    const searchBtn = document.getElementById("search")
     const count = document.getElementById("count");
     const delay = document.getElementById("delay");
     delay.value = onlineDelay == null ? '5' : onlineDelay
@@ -73,7 +68,7 @@ function initialiseOnline() {
     const iframe = document.getElementById("frame")
     const progress = document.getElementById("online-progress")
     const dashboard = document.getElementById("dashboard")
-    var search = function () {
+    searchBtn.addEventListener('click',  function () {
         configView.style.setProperty("display", "none")
         runView.style.setProperty("display", "flex")
         searchOn(iframe, count.value, delay.value, function (remaining) {
@@ -81,10 +76,7 @@ function initialiseOnline() {
             dashboard.style.setProperty("display", remaining === 0 ? "block" : "none")
             document.getElementById("promotion").style.setProperty("display", remaining === 0 ? "block" : "none")
         })
-    }
-    mobilesearch.addEventListener('click', search)
-    pcsearch.addEventListener('click', search)
-    edgepoint.addEventListener('click', search)
+    })
     dashboard.addEventListener('click', function () {
         window.open("https://rewards.bing.com/?signIn=1")
     })

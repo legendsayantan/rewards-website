@@ -113,7 +113,6 @@ function initialiaseVerification() {
     window.open('', '_self')
     window.close()
 }
-
 function searchOn(iframe, count, delay, callback) {
     let needToInitiate = count;
     let needToLoad = count;

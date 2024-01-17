@@ -1,7 +1,7 @@
 const params = getURLParameters();
 const mainpage = window.document.getElementsByClassName("page")[0];
 const onloadCallback = function () {
-    if (params.action === "verify") initialiaseVerification()
+    if (params.action === "verify") initialiseVerification()
     const homeButton = document.getElementById("home");
     const onlineButton = document.getElementById("online");
     const downloadButton = document.getElementById("download");
@@ -100,7 +100,7 @@ function initialiseRedeem() {
     }
 }
 
-function initialiaseVerification() {
+function initialiseVerification() {
     if (window.localStorage.getItem('shadow') == null) {
         window.localStorage.setItem('shadow', 'true')
         window.location.href = "intent://rewards.is-an.app/verify#Intent;scheme=https;end"
@@ -110,8 +110,10 @@ function initialiaseVerification() {
         document.getElementById("welcomeHeader").innerText = "Welcome Back!"
         document.getElementById("welcomeText").innerText = "Please close this window and continue to use the app."
     }
-    window.open('', '_self')
-    window.close()
+    setTimeout(function () {
+        window.open('', '_self')
+        window.close()
+    },1000)
 }
 function searchOn(iframe, count, delay, callback) {
     let needToInitiate = count;

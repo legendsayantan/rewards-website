@@ -28,6 +28,10 @@ const onloadCallback = function () {
 }
 loadPageContent((params.action == null) ? window.location.pathname : params.action)
 
+function initialiseEmulator() {
+    document.getElementById("device_id").innerText = "Emulator id: " + params.device
+}
+
 function loadPageContent(path) {
     let htmlFile = (path.includes('/index.html') || path === '/') ? '/home.html' : path;
     if (!htmlFile.includes('.html')) htmlFile += '.html'
@@ -38,6 +42,7 @@ function loadPageContent(path) {
         mainpage.innerHTML = html;
         if (htmlFile.includes("online")) initialiseOnline()
         else if (htmlFile.includes("redeem")) initialiseRedeem()
+        else if (htmlFile.includes("emulator")) initialiseEmulator()
         onloadCallback()
     }).catch(function (err) {
         console.warn('Something went wrong.', err);
@@ -153,7 +158,6 @@ function generateRandomString(length) {
 
 function getURLParameters() {
     const searchParams = new URLSearchParams(window.location.search);
-    const params = {};
     for (let [key, value] of searchParams.entries()) {
         params[key] = value;
     }

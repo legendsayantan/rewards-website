@@ -157,6 +157,7 @@ function generateRandomString(length) {
 }
 
 function getURLParameters() {
+    let params = {};
     const searchParams = new URLSearchParams(window.location.search);
     for (let [key, value] of searchParams.entries()) {
         params[key] = value;
